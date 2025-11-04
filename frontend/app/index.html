@@ -21,338 +21,256 @@
   </head>
   <body class="bg-[#d8b4a0] text-[#2B2B2B] font-sans">
     <!-- Header -->
-    <header class="bg-white text-[#2B2B2B] shadow-md">
-      <div class="container mx-auto flex justify-between items-center p-4">
+    <header class="bg-white text-[#2B2B2B] shadow-md" role="banner">
+      <div class="container mx-auto max-w-screen-2xl flex justify-between items-center p-4">
         <h1 class="text-3xl font-bold tracking-wide">Equiply Pro</h1>
-        <nav class="space-x-6 text-[#2B2B2B] font-bold text-lg">
-          <a href="#listings" class="hover:text-[#C24C30]">Browse</a>
-          <a href="#how-it-works" class="hover:text-[#C24C30]">How It Works</a>
-          <a href="#login" class="hover:text-[#C24C30]">Login</a>
+        <nav class="space-x-6 text-[#2B2B2B] font-bold text-lg" role="navigation" aria-label="Main-menu">
+          <a href="#listings" class="hover:text-[#C24C30] focus:outline focus:ring-2 focus:ring-[#C24C30]">Browse</a>
+          <a href="#how-it-works" class="hover:text-[#C24C30] focus:outline focus:ring-2 focus:ring-[#C24C30]">How It Works</a>
+          <a href="#login" class="hover:text-[#C24C30] focus:outline focus:ring-2 focus:ring-[#C24C30]">Login</a>
         </nav>
       </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="bg-[#2B2B2B] text-[#E66A32] py-16 text-center">
-      <h2 class="text-4xl font-bold mb-4">Certified Tools. Trusted Rentals.</h2>
-      <p class="text-[#E66A32] text-lg mb-6">
-        Find professional-grade equipment from verified sellers near you.
-      </p>
-      <form
-        class="flex flex-col md:flex-row justify-center gap-4 max-w-3xl mx-auto"
-      >
-        <input
-          type="text"
-          placeholder="Search equipment..."
-          class="px-4 py-2 rounded border border-[#C24C30] text-[#2B2B2B]"
-        />
-        <input
-          type="text"
-          placeholder="Location"
-          class="px-4 py-2 rounded border border-[#C24C30] text-[#2B2B2B]"
-        />
-        <button
-          class="bg-[#8C2F2B] hover:bg-[#C24C30] text-white px-6 py-2 rounded"
-        >
-          Search
-        </button>
-      </form>
-    </section>
+    <main role="main">
+      <section class="bg-[#2B2B2B] text-[#FFD9A0] py-16 text-center" aria-labelledby="hero-heading">
+        <h2 id="hero-heading" class="text-4xl lg:text-5xl font-bold mb-4">Certified Tools. Trusted Rentals.</h2>
+        <p class="text-lg mb-6">Find professional-grade equipment from verified sellers near you.</p>
+        <form class="flex flex-col md:flex-row justify-center gap-4 max-w-3xl mx-auto" role="search" aria-label="Equipment search">
+          <div>
+            <label for="search-equipment" class="sr-only">Search equipment</label>
+            <input id="search-equipment" type="text" placeholder="Search equipment..." class="px-4 py-2 rounded border border-[#C24C30] text-[#2B2B2B]" />
+          </div>
+          <div>
+            <label for="search-location" class="sr-only">Location</label>
+            <input id="search-location" type="text" placeholder="Location" class="px-4 py-2 rounded border border-[#C24C30] text-[#2B2B2B]" />
+          </div>
+          <button type="submit" class="bg-[#8C2F2B] hover:bg-[#C24C30] text-white px-6 py-2 rounded focus:outline focus:ring-2 focus:ring-white">
+            Search
+          </button>
+        </form>
+      </section>
 
-    <section class="bg-[#FF8C42] text-white py-12">
-  <div class="container mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-
-    <!-- Left: Rental Form -->
-    <div class="bg-white text-[#2B2B2B] rounded-lg shadow-lg p-6">
-      <h2 class="text-xl font-bold mb-4">Available For Rent</h2>
+    <!-- Rental Form Section -->
+    <section class="bg-[#FF8C42] text-white py-12" role="region" aria-labelledby="rental-form-heading">
+      <div class="container mx-auto max-w-screen-2xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center px-4">
+      <!-- Left: Rental Form -->
+      <div class="bg-white text-[#2B2B2B] rounded-lg shadow-lg p-6">
+        <h2 id="rental-form-heading" class="text-xl lg:text-2xl font-bold mb-4">Available For Rent</h2>
 
       <!-- Category Tabs -->
-      <div class="grid grid-cols-5 gap-2 mb-6">
-        <button class="bg-white border-4 border-[#FF8C42] text-[#FF8C42] rounded-lg py-2 font-semibold">Photo</button>
-        <button class="bg-[#FF8C42] text-white rounded-lg py-2 font-semibold">Lighting</button>
-        <button class="bg-[#FF8C42] text-white rounded-lg py-2 font-semibold">Music</button>
-        <button class="bg-[#FF8C42] text-white rounded-lg py-2 font-semibold">Film</button>
-        <button class="bg-[#FF8C42] text-white rounded-lg py-2 font-semibold">Podcast</button>
-        <button class="bg-[#FF8C42] text-white rounded-lg py-2 font-semibold">Laboratory</button>
-        <button class="bg-[#FF8C42] text-white rounded-lg py-2 font-semibold">Art & Craft</button>
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2 mb-6" role="tablist" aria-label="Equipment categories">
+          <button role="tab" aria-selected="true" class="bg-white border-4 border-[#FF8C42] text-[#FF8C42] rounded-lg py-2 font-semibold focus:outline focus:ring-2 focus:ring-[#FF8C42]">Photo</button>
+          <button role="tab" class="bg-[#FF8C42] text-white rounded-lg py-2 font-semibold">Lighting</button>
+          <button role="tab" class="bg-[#FF8C42] text-white rounded-lg py-2 font-semibold">Music</button>
+          <button role="tab" class="bg-[#FF8C42] text-white rounded-lg py-2 font-semibold">Film</button>
+          <button role="tab" class="bg-[#FF8C42] text-white rounded-lg py-2 font-semibold">Podcast</button>
+          <button role="tab" class="bg-[#FF8C42] text-white rounded-lg py-2 font-semibold">Laboratory</button>
+          <button role="tab" class="bg-[#FF8C42] text-white rounded-lg py-2 font-semibold">Art & Craft</button>
+        </div>
+
+        <!-- Form Fields -->
+        <form class="grid grid-cols-1 md:grid-cols-2 gap-4" aria-label="Rental details form">
+          <div>
+            <label for="brand" class="block text-sm font-medium mb-1">Choose Brand</label>
+            <select id="brand" name="brand" class="w-full border border-[#C24C30] rounded px-3 py-2">
+              <option>Canon</option>
+              <option>Sony</option>
+              <option>Nikon</option>
+              <option>Fujifilm</option>
+              <option>Panasonic</option>
+              <option>Olympus</option>
+            </select>
+          </div>
+          <div>
+            <label for="pickup-location" class="block text-sm font-medium mb-1">Pick up Location</label>
+            <input id="pickup-location" name="pickup-location" type="text" placeholder="Type..." class="w-full border border-[#C24C30] rounded px-3 py-2" />
+          </div>
+          <div>
+            <label for="dropoff-location" class="block text-sm font-medium mb-1">Drop off Location</label>
+            <input id="dropoff-location" name="dropoff-location" type="text" placeholder="Type..." class="w-full border border-[#C24C30] rounded px-3 py-2" />
+          </div>
+          <div>
+            <label for="pickup-datetime" class="block text-sm font-medium mb-1">Pick up Date & Time</label>
+            <input id="pickup-datetime" name="pickup-datetime" type="datetime-local" class="w-full border border-[#C24C30] rounded px-3 py-2" />
+          </div>
+          <div>
+            <label for="return-datetime" class="block text-sm font-medium mb-1">Return Date & Time</label>
+            <input id="return-datetime" name="return-datetime" type="datetime-local" class="w-full border border-[#C24C30] rounded px-3 py-2" />
+          </div>
+        </form>
+
+        <!-- Submit Button -->
+        <div class="mt-6">
+          <button type="submit" class="w-full bg-[#2B2B2B] text-white py-3 rounded hover:bg-[#C24C30] transition focus:outline focus:ring-2 focus:ring-[#C24C30]">
+            Choose Your Gear
+          </button>
+        </div>
       </div>
 
-      <!-- Form Fields -->
-      <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label class="block text-sm font-medium mb-1">Choose Brand</label>
-          <select class="w-full border border-[#C24C30] rounded px-3 py-2">
-            <option>Canon</option>
-            <option>Sony</option>
-            <option>Nikon</option>
-            <option>Fujifilm</option>
-            <option>Panasonic</option>
-            <option>Olympus</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-sm font-medium mb-1">Pick up Location</label>
-          <input type="text" placeholder="Type..." class="w-full border border-[#C24C30] rounded px-3 py-2" />
-        </div>
-        <div>
-          <label class="block text-sm font-medium mb-1">Drop off Location</label>
-          <input type="text" placeholder="Type..." class="w-full border border-[#C24C30] rounded px-3 py-2" />
-        </div>
-        <div>
-          <label class="block text-sm font-medium mb-1">Pick up Date & Time</label>
-          <input type="datetime-local" class="w-full border border-[#C24C30] rounded px-3 py-2" />
-        </div>
-        <div>
-          <label class="block text-sm font-medium mb-1">Return Date & Time</label>
-          <input type="datetime-local" class="w-full border border-[#C24C30] rounded px-3 py-2" />
-        </div>
-      </form>
-
-      <!--Submit Button -->
-      <div class="mt-6">
-        <button class="w-full bg-[#2B2B2B] text-white py-3 rounded hover:bg-[#C24C30] transition">Choose Your Gear</button>
+      <!-- Right: Image + Price -->
+      <div class="flex flex-col items-center justify-center">
+        <img src="public/assets/img/3d-printing.jpg" alt="3D Printer in action" class="w-full max-w-md rounded-lg shadow-lg mb-4" />
+        <div class="text-3xl font-bold text-[#2B2B2B]">£45 / DAY</div>
+        <p class="text-[#2B2B2B] mt-2">Based on selected category</p>
       </div>
     </div>
-
-    <!-- Right: Image + Price (scaled to fit) -->
-    <div class="flex flex-col items-center justify-center">
-      <img src="public/assets/img/3d-printing.jpg" alt="3D Printer" class="w-full max-w-md rounded-lg shadow-lg mb-4" />
-      <div class="text-3xl font-bold text-[#2B2B2B]">£45 / DAY</div>
-      <p class="text-[#2B2B2B] mt-2">Based on selected category</p>
-    </div>
-
   </div>
-</section>
-    <!--  Featured Listings -->
-    <section
-      id="listings"
-      class="container mx-auto py-12 site-bg-white tvm-w-range-section-wrap fadeInDown"
-    >
-      <h3 class="text-2xl font-semibold text-[#8C2F2B] mb-6 text-center">
-        Featured Equipment
-      </h3>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white border-double border-[#E66A32] shadow-sm rounded-lg p-4">
-          <img src="public/assets/img/camera.jpg" alt="Professional camera" class="rounded mb-4" />
+  </section>
+
+
+      <!--  Featured Listings -->
+      <section id="listings" class="container mx-auto max-w-screen-2xl py-12 px-4" role="region" aria-labelledby="featured-heading">
+        <h3 id="featured-heading" class="text-2xl lg:text-3xl font-semibold text-[#8C2F2B] mb-6 text-center">Featured Equipment</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Card -->
+        <div class="bg-white border border-[#E66A32] shadow-sm rounded-lg p-4" role="group" aria-label="Canon EOS R5 camera">
+          <img src="public/assets/img/camera.jpg" alt="Canon EOS R5 camera" class="rounded mb-4" />
           <h4 class="text-[#8C2F2B] font-semibold text-lg">Canon EOS R5</h4>
           <p class="text-[#2B2B2B] font-medium">£45/day</p>
-          <button
-            class="mt-4 bg-[#C24C30] text-white px-4 py-2 rounded hover:bg-[#8C2F2B]"
-          >
-            View Details
-          </button>
+          <button class="mt-4 bg-[#C24C30] text-white px-4 py-2 rounded hover:bg-[#8C2F2B] focus:outline focus:ring-2 focus:ring-[#8C2F2B]">View Details</button>
         </div>
-        <div class="bg-white border-double border-[#E66A32] shadow-sm rounded-lg p-4">
+        <div class="bg-white border border-[#E66A32] shadow-sm rounded-lg p-4" role="group" aria-label="Biolouge Microscope">
           <img src="public/assets/img/microscope.jpg" alt="Microscope" class="rounded mb-4" />
-          <h4 class="text-[#8C2F2B] font-semibold text-lg">
-            Biolouge Microscope
-          </h4>
+          <h4 class="text-[#8C2F2B] font-semibold text-lg">Biolouge Microscope</h4>
           <p class="text-[#2B2B2B] font-medium">£25/day</p>
-          <button
-            class="mt-4 bg-[#C24C30] text-white px-4 py-2 rounded hover:bg-[#8C2F2B]"
-          >
-            View Details
-          </button>
+          <button class="mt-4 bg-[#C24C30] text-white px-4 py-2 rounded hover:bg-[#8C2F2B] focus:outline focus:ring-2 focus:ring-[#8C2F2B]">View Details</button>
         </div>
-        <div class="bg-white border-double border-[#E66A32] shadow-sm rounded-lg p-4">
+        <div class="bg-white border border-[#E66A32] shadow-sm rounded-lg p-4" role="group" aria-label="3D Printer">
           <img src="public/assets/img/3d-printing.jpg" alt="3D Printer" class="rounded mb-4" />
           <h4 class="text-[#8C2F2B] font-semibold text-lg">3D Printer</h4>
-          <p class="text-[#2B2B2B] font-medium">£15/day</p>
-          <button
-            class="mt-4 bg-[#C24C30] text-white px-4 py-2 rounded hover:bg-[#8C2F2B]"
-          >
-            View Details
-          </button>
+         <p class="text-[#2B2B2B] font-medium">£15/day</p>
+          <button class="mt-4 bg-[#C24C30] text-white px-4 py-2 rounded hover:bg-[#8C2F2B] focus:outline focus:ring-2 focus:ring-[#8C2F2B]">View Details</button>
         </div>
-        <div class="bg-white border-double border-[#E66A32] shadow-sm rounded-lg p-4">
+        <div class="bg-white border border-[#E66A32] shadow-sm rounded-lg p-4" role="group" aria-label="Engraving Machine">
           <img src="public/assets/img/engraving_machine.jpg" alt="Engraving Machine" class="rounded mb-4" />
           <h4 class="text-[#8C2F2B] font-semibold text-lg">Engraving Machine</h4>
           <p class="text-[#2B2B2B] font-medium">£15/day</p>
-          <button
-            class="mt-4 bg-[#C24C30] text-white px-4 py-2 rounded hover:bg-[#8C2F2B]"
-          >
-            View Details
-          </button>
+          <button class="mt-4 bg-[#C24C30] text-white px-4 py-2 rounded hover:bg-[#8C2F2B] focus:outline focus:ring-2 focus:ring-[#8C2F2B]">View Details</button>
         </div>
-        <div class="bg-white border-double border-[#E66A32] shadow-sm rounded-lg p-4">
+        <div class="bg-white border border-[#E66A32] shadow-sm rounded-lg p-4" role="group" aria-label="DJ Equipment">
           <img src="public/assets/img/dj_equipment.jpg" alt="DJ Equipment" class="rounded mb-4" />
           <h4 class="text-[#8C2F2B] font-semibold text-lg">DJ Equipment</h4>
           <p class="text-[#2B2B2B] font-medium">£50/day</p>
-          <button
-            class="mt-4 bg-[#C24C30] text-white px-4 py-2 rounded hover:bg-[#8C2F2B]"
-          >
-            View Details
-          </button>
+          <button class="mt-4 bg-[#C24C30] text-white px-4 py-2 rounded hover:bg-[#8C2F2B] focus:outline focus:ring-2 focus:ring-[#8C2F2B]">View Details</button>
         </div>
-        <div class="bg-white border-double border-[#E66A32] shadow-sm rounded-lg p-4">
-          <img src="public/assets/img/stage_lights.jpg" alt="Stage Lights" class="rounded mb-4" />
+        <div class="bg-white border border-[#E66A32] shadow-sm rounded-lg p-4" role="group" aria-label="Stage Lights">
+          <img src="public/assets/img/stage_lighting.jpg" alt="Stage Lights" class="rounded mb-4" />
           <h4 class="text-[#8C2F2B] font-semibold text-lg">Stage Lights</h4>
           <p class="text-[#2B2B2B] font-medium">£50/day</p>
-          <button
-            class="mt-4 bg-[#C24C30] text-white px-4 py-2 rounded hover:bg-[#8C2F2B]"
-          >
-            View Details
-          </button>
+          <button class="mt-4 bg-[#C24C30] text-white px-4 py-2 rounded hover:bg-[#8C2F2B] focus:outline focus:ring-2 focus:ring-[#8C2F2B]">View Details</button>
         </div>
       </div>
     </section>
 
-    <!-- Why Choose Us -->
-    <section class="site-bg-white tvm-w-range-section-wrap fadeInDown py-12">
-      <div class="container mx-auto text-center">
-        <h3 class="text-2xl font-semibold text-[#8C2F2B] mb-6">
-          Why Choose Equiply Pro?
-        </h3>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div class="p-4">
-            <i class="bx bx-support text-[#8C2F2B] text-4xl mb-2"></i>
+        <!-- Why Choose Us -->
+        <section class="bg-white py-12" role="region" aria-labelledby="why-choose-heading">
+      <div class="container mx-auto max-w-screen-2xl text-center px-4">
+        <h3 id="why-choose-heading" class="text-2xl lg:text-3xl font-semibold text-[#8C2F2B] mb-6">Why Choose Equiply Pro?</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+          <div class="p-4" role="group" aria-label="24/7 Support">
+            <i class="bx bx-support text-[#8C2F2B] text-4xl mb-2" aria-hidden="true"></i>
             <p class="text-[#2B2B2B]">24/7 Support</p>
           </div>
-
-          <div class="p-4">
-            <i class="bx bxs-check-circle text-[#8C2F2B] text-4xl mb-2"></i>
+          <div class="p-4" role="group" aria-label="Verified Equipment">
+            <i class="bx bxs-check-circle text-[#8C2F2B] text-4xl mb-2" aria-hidden="true"></i>
             <p class="text-[#2B2B2B]">Verified Equipment</p>
           </div>
-
-          <div class="p-4">
-            <i class="bx bxs-dollar-circle text-[#8C2F2B] text-4xl mb-2"></i>
+          <div class="p-4" role="group" aria-label="Flexible Pricing">
+            <i class="bx bxs-dollar-circle text-[#8C2F2B] text-4xl mb-2" aria-hidden="true"></i>
             <p class="text-[#2B2B2B]">Flexible Pricing</p>
           </div>
-
-          <div class="p-4">
-            <i class="bx bxs-package text-[#8C2F2B] text-4xl mb-2"></i>
+          <div class="p-4" role="group" aria-label="Free Pickup & Return">
+            <i class="bx bxs-package text-[#8C2F2B] text-4xl mb-2" aria-hidden="true"></i>
             <p class="text-[#2B2B2B]">Free Pickup & Return</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- How It Works -->
-    <section id="how-it-works" class="bg-[#e8b89f] py-12">
-      <div class="container mx-auto text-center">
-        <h3 class="text-2xl font-semibold text-[#8C2F2B] mb-10">
-          How It Works
-        </h3>
-
-        <div
-          class="flex flex-col md:flex-row justify-center items-center gap-8"
-        >
-          <!-- Step 1 -->
-          <div class="text-center">
-            <div
-              class="bg-[#C24C30] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2 text-xl font-bold"
-            >
-              1
-            </div><br />
-            <i class="bx bx-search-alt text-[#8C2F2B] text-4xl mb-2"></i>
-            <p class="text-[#8C2F2B] font-semibold">Choose Equipment</p>
-            <p class="text-[#2B2B2B] text-sm mt-1">
-              Browse certified gear from trusted owners.
-            </p>
-          </div>
-
-          <!-- Connector -->
-          <div class="hidden md:block w-8 h-1 bg-[#C24C30]"></div>
-
-          <!-- Step 2 -->
-          <div class="text-center">
-            <div
-              class="bg-[#C24C30] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2 text-xl font-bold"
-            >
-              2
-            </div><br />
-            <i class="bx bx-calendar text-[#8C2F2B] text-4xl mb-2"></i>
-            <p class="text-[#8C2F2B] font-semibold">Select Dates</p>
-            <p class="text-[#2B2B2B] text-sm mt-1">
-              Pick your rental dates with flexible options.
-            </p>
-          </div>
-
-          <!-- Connector -->
-          <div class="hidden md:block w-8 h-1 bg-[#C24C30]"></div>
-
-          <!-- Step 3 -->
-          <div class="text-center">
-            <div
-              class="bg-[#C24C30] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2 text-xl font-bold"
-            >
-              3
-            </div><br />
-            <i class="bx bx-check-shield text-[#8C2F2B] text-4xl mb-2"></i>
-            <p class="text-[#8C2F2B] font-semibold">Confirm Booking</p>
-            <p class="text-[#2B2B2B] text-sm mt-1">
-              Secure your booking with deposit protection.
-            </p>
-          </div>
-
-          <!-- Connector -->
-          <div class="hidden md:block w-8 h-1 bg-[#C24C30]"></div>
-
-          <!-- Step 4 -->
-          <div class="text-center">
-            <div
-              class="bg-[#C24C30] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2 text-xl font-bold"
-            >
-              4
-            </div><br />
-            <i class="bx bx-package text-[#8C2F2B] text-4xl mb-2"></i>
-            <p class="text-[#8C2F2B] font-semibold">Collect & Return</p>
-            <p class="text-[#2B2B2B] text-sm mt-1">
-              Pick up your gear or schedule free delivery.
-            </p>
+        <!-- How It Works -->
+     <section id="how-it-works" class="bg-[#e8b89f] py-12" role="region" aria-labelledby="how-heading">
+       <div class="container mx-auto max-w-screen-2xl text-center px-4">
+         <h3 id="how-heading" class="text-2xl lg:text-3xl font-semibold text-[#8C2F2B] mb-10">How It Works</h3>
+       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Step -->
+       <div role="group" aria-label="Step 1: Choose Equipment">
+          <div class="bg-[#C24C30] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2 text-xl font-bold">1</div>
+          <i class="bx bx-search-alt text-[#8C2F2B] text-4xl mb-2" aria-hidden="true"></i>
+          <p class="text-[#8C2F2B] font-semibold">Choose Equipment</p>
+          <p class="text-[#2B2B2B] text-sm mt-1">Browse certified gear from trusted owners.</p>
+        </div>
+            
+        <!-- Step 2 -->
+        <div role="group" aria-label="Step 2: Select Dates">
+          <div class="bg-[#C24C30] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2 text-xl font-bold">2</div>
+        <br />
+              <i class="bx bx-calendar text-[#8C2F2B] text-4xl mb-2"></i>
+              <p class="text-[#8C2F2B] font-semibold">Select Dates</p>
+              <p class="text-[#2B2B2B] text-sm mt-1">
+                Pick your rental dates with flexible options.
+              </p>
+            </div>
+  
+            <!-- Step 3 -->
+            <div role="group" aria-label="Step 3: Confirm Booking">
+              <div class="bg-[#C24C30] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2 text-xl font-bold">3</div>
+              <br />
+              <i class="bx bx-check-shield text-[#8C2F2B] text-4xl mb-2"></i>
+              <p class="text-[#8C2F2B] font-semibold">Confirm Booking</p>
+              <p class="text-[#2B2B2B] text-sm mt-1">
+                Secure your booking with deposit protection.
+              </p>
+            </div>
+  
+            <!-- Step 4 -->
+            <div role="group" aria-label="Step 4: Collect & Return">
+              <div class="bg-[#C24C30] text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2 text-xl font-bold">4</div>
+              <br />
+              <i class="bx bx-package text-[#8C2F2B] text-4xl mb-2"></i>
+              <p class="text-[#8C2F2B] font-semibold">Collect & Return</p>
+              <p class="text-[#2B2B2B] text-sm mt-1">
+                Pick up your gear or schedule free delivery.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!--  Testimonials -->
-    <section class="site-bg-white tvm-w-range-section-wrap fadeInDown py-12">
-      <div class="container mx-auto text-center">
-        <h3 class="text-2xl font-semibold text-[#8C2F2B] mb-6">
-          What Our Users Say
-        </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-[#2B2B2B] shadow-md rounded-lg p-6">
-            <p class="text-[#E66A32] italic">
+      </section>
+  
+      <!--  Testimonials -->
+      <section class="bg-white py-12" role="region" aria-labelledby="testimonials-heading">
+        <div class="container mx-auto max-w-screen-2xl text-center px-4">
+          <h3 id="testimonials-heading" class="text-2xl lg:text-3xl font-semibold text-[#8C2F2B] mb-6">What Our Users Say</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <blockquote class="bg-[#2B2B2B] text-[#E66A32] italic shadow-md rounded-lg p-6" aria-label="Testimonial from Alex">
               “Reliable gear and smooth booking process. Highly recommend! I was able to find exactly what I needed, trusted the platform completely. The process was seamless from start to finish, and the price was unbeatable.”
-            </p>
-            <p class="text-[#C24C30] font-semibold mt-2">
-              — Alex, Videographer
-            </p>
-          </div>
-          <div class="bg-[#2B2B2B] shadow-md rounded-lg p-6">
-            <p class="text-[#E66A32] italic">
+              <cite class="block text-[#C24C30] font-semibold mt-2">— Alex, Videographer</cite>
+             </blockquote>
+        <blockquote class="bg-[#2B2B2B] text-[#E66A32] italic shadow-md rounded-lg p-6" aria-label="Testimonial from Jamie">
               “I had a fantastic experience renting equipment from this platform. The selection was impressive, and the customer service was top-notch.”
-            </p>
-            <p class="text-[#C24C30] font-semibold mt-2">
-              — Jamie, Photographer 
-            </p>
+              <cite class="block text-[#C24C30] font-semibold mt-2">— Jamie, Photographer</cite>
+            </blockquote>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
     <!-- Footer -->
-    <footer class="bg-[#E66A32] text-center py-6 text-sm text-black">
-      <div class="container mx-auto">
-        <img
-          src="public/assets/img/Fulllogo(1).png"
-          alt="Equiply Pro Logo"
-          class="mx-auto mb-2 w-12 h-12"
-        />
+    <footer class="bg-[#E66A32] text-center py-6 text-sm text-black" role="contentinfo">
+      <div class="container mx-auto max-w-screen-2xl px-4">
+        <img src="public/assets/img/Fulllogo(1).png" alt="Equiply Pro logo" class="mx-auto mb-2 w-12 h-12" />
         <p class="text-black font-bold">Equiply Pro</p>
-        </p>
         <p class="uppercase text-black">Certified Tools. Trusted Rentals.</p>
-        <p class="mt-2 text-black">
-          © 2025 Equiply Pro. Certified Tools. Trusted Rentals.
-        </p>
-        <div class="mt-2 space-x-4">
-          <a href="#" class="hover:text-white">Privacy Policy</a>
-          <a href="#" class="hover:text-white">Terms</a>
-          <a href="#" class="hover:text-white">Contact</a>
-        </div>
+        <p class="mt-2 text-black">© 2025 Equiply Pro. Certified Tools. Trusted Rentals.</p>
+        <nav aria-label="Footer links" class="mt-2 space-x-4">
+          <a href="#" class="hover:text-white focus:outline focus:ring-2 focus:ring-white">Privacy Policy</a>
+          <a href="#" class="hover:text-white focus:outline focus:ring-2 focus:ring-white">Terms</a>
+          <a href="#" class="hover:text-white focus:outline focus:ring-2 focus:ring-white">Contact</a>
+        </nav>
       </div>
     </footer>
+
+    </main>
   </body>
   <script src="index.js"></script>
 </html>
