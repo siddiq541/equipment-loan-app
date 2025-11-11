@@ -34,10 +34,3 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Equipment loan API is running on port ${PORT}`);
 });
-
-
-
-
-
-
-
