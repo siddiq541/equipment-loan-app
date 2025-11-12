@@ -1,13 +1,4 @@
 @import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  body {
-    @apply bg-[#d8b4a0] text-carbon font-sans;
-  }
-}
 
 
 /* frontend/src/components/Login.css */
