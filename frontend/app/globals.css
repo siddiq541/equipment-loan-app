@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 
-/* frontend/src/components/Login.css */
+/* frontend/src/components/Login.css *
 .login-container {
   max-width: 400px;
   margin: 50px auto;
@@ -68,4 +68,4 @@
 
 .login-container button:hover:not(:disabled) {
   background-color: #0056b3;
-}
+}*/
