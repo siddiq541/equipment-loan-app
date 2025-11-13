@@ -10,7 +10,6 @@ import Testimonials from './Testimonials';
 import Footer from './Footer';
 import Overlay from './LoginOverlay';
 import RegisterOverlay from './RegisterOverlay';
-import RegisterPage from '@/app/register/page';
 
 const LandingPage = () => {
   const [showLogin, setShowLogin] = useState(false);
