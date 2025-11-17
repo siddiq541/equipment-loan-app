@@ -132,6 +132,3 @@ const RegisterOverlay = ({ onClose }) => {
 };
 
 export default RegisterOverlay;
-
-
-
