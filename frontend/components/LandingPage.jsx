@@ -18,8 +18,8 @@ const LandingPage = () => {
   const [showRegister, setShowRegister] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
 
-  // Detect query params to trigger overlays
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
@@ -30,10 +30,11 @@ const LandingPage = () => {
 
   return (
     <main className="bg-[#d8b4a0] text-[#2B2B2B] font-sans relative">
-      {/* Header with login trigger */}
-      <Header onLoginClick={() => setShowLogin(true)} />
+      <Header
+        onLoginClick={() => setShowLogin(true)}
+        onRegisterClick={() => setShowRegister(true)}
+      />
 
-      {/* Main sections */}
       <Hero />
       <RentalForm />
       <Listings />
@@ -52,6 +53,35 @@ const LandingPage = () => {
       )}
       <PrivacyPolicy isOpen={showPrivacy} onClose={() => setShowPrivacy(false)} />
       <TermsOfService isOpen={showTerms} onClose={() => setShowTerms(false)} />
+      {showLogin && (
+        <LoginOverlay
+          role="renter"
+          onClose={() => setShowLogin(false)}
+          onSuccess={() => {
+            setShowLogin(false);
+            setToastMessage('Welcome back!');
+            setTimeout(() => setToastMessage(''), 4000);
+          }}
+        />
+      )}
+
+      {showRegister && (
+        <RegisterOverlay
+          role="renter"
+          onClose={() => setShowRegister(false)}
+          onSuccess={() => {
+            setShowRegister(false);
+            setToastMessage('Account created successfully!');
+            setTimeout(() => setToastMessage(''), 4000);
+          }}
+        />
+      )}
+
+      {toastMessage && (
+        <div className="fixed bottom-6 right-6 bg-saffron text-black px-4 py-2 rounded-md shadow-lg animate-fade-in z-50">
+          {toastMessage}
+        </div>
+      )}
     </main>
   );
 };
