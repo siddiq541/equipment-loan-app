@@ -6,6 +6,8 @@ import {
   LockClosedIcon,
   PencilSquareIcon,
 } from '@heroicons/react/24/solid';
+import PrivacyPolicy from './PrivacyPolicy';
+import TermsOfService from './TermsOfService';
 
 const RegisterOverlay = ({ onClose }) => {
   const [name, setName] = useState('');
@@ -13,17 +15,28 @@ const RegisterOverlay = ({ onClose }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
+  const [agreed, setAgreed] = useState(false);
+  const [updates, setUpdates] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
+    if (!agreed) {
+      setError('You must agree to the Terms and Privacy Policy.');
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await axios.post('http://localhost:5001/api/users/register', {
         name,
         email,
         password,
+        updates,
       }, {
         withCredentials: true,
       });
@@ -49,19 +62,9 @@ const RegisterOverlay = ({ onClose }) => {
           className="absolute top-4 right-4 bg-white text-carbon p-2 rounded-full shadow hover:bg-saffron transition"
           aria-label="Close"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="h-5 w-5"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            strokeWidth={2} stroke="currentColor" className="h-5 w-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
@@ -109,6 +112,45 @@ const RegisterOverlay = ({ onClose }) => {
             <p className="text-sm text-red-600 bg-[#ffd2d2] p-2 rounded-md">{error}</p>
           )}
 
+          {/* Checkboxes */}
+          <div className="space-y-3 mt-4">
+            <label className="flex items-start space-x-2 text-sm">
+              <input
+                type="checkbox"
+                checked={agreed}
+                onChange={(e) => setAgreed(e.target.checked)}
+                required
+                className="mt-1"
+              />
+              <span>
+                I agree to the
+                <span
+                  onClick={() => setShowTerms(true)}
+                  className="text-[#C24C30] underline mx-1 cursor-pointer"
+                >
+                  Terms
+                </span>
+                and
+                <span
+                  onClick={() => setShowPrivacy(true)}
+                  className="text-[#C24C30] underline mx-1 cursor-pointer"
+                >
+                  Privacy Policy
+                </span>.
+              </span>
+            </label>
+
+            <label className="flex items-start space-x-2 text-sm">
+              <input
+                type="checkbox"
+                checked={updates}
+                onChange={(e) => setUpdates(e.target.checked)}
+                className="mt-1"
+              />
+              <span>Send me product updates (optional)</span>
+            </label>
+          </div>
+
           {/* Neon Hover-Up Register Button */}
           <button
             type="submit"
@@ -126,9 +168,18 @@ const RegisterOverlay = ({ onClose }) => {
             </a>
           </p>
         </form>
+
+        {/* Modals */}
+        <PrivacyPolicy isOpen={showPrivacy} onClose={() => setShowPrivacy(false)} />
+        <TermsOfService isOpen={showTerms} onClose={() => setShowTerms(false)} />
       </div>
     </div>
   );
 };
 
 export default RegisterOverlay;
+
+
+
+
+
