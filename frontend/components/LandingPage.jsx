@@ -19,20 +19,34 @@ const LandingPage = () => {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       if (params.get("register") === "true") setShowRegister(true);
       if (params.get("login") === "true") setShowLogin(true);
+
+      const token = localStorage.getItem("authToken");
+      setIsAuthenticated(!!token);
     }
   }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    setIsAuthenticated(false);
+    setToastMessage("You have been logged out.");
+    setTimeout(() => setToastMessage(""), 3000);
+    window.location.href = "/";
+  };
 
   return (
     <main className="bg-[#d8b4a0] text-[#2B2B2B] font-sans relative">
       <Header
         onLoginClick={() => setShowLogin(true)}
+        onLogoutClick={handleLogout}
         onRegisterClick={() => setShowRegister(true)}
+        isAuthenticated={isAuthenticated}
       />
 
       <Hero />
@@ -41,6 +55,7 @@ const LandingPage = () => {
       <Benefits />
       <HowItWorks />
       <Testimonials />
+
       <Footer
         onShowPrivacy={() => setShowPrivacy(true)}
         onShowTerms={() => setShowTerms(true)}
@@ -48,35 +63,11 @@ const LandingPage = () => {
 
       {/* Overlays */}
       {showLogin && <Overlay onClose={() => setShowLogin(false)} />}
-      {showRegister && (
-        <RegisterOverlay onClose={() => setShowRegister(false)} />
-      )}
+      {showRegister && <RegisterOverlay onClose={() => setShowRegister(false)} />}
       <PrivacyPolicy isOpen={showPrivacy} onClose={() => setShowPrivacy(false)} />
       <TermsOfService isOpen={showTerms} onClose={() => setShowTerms(false)} />
-      {showLogin && (
-        <LoginOverlay
-          role="renter"
-          onClose={() => setShowLogin(false)}
-          onSuccess={() => {
-            setShowLogin(false);
-            setToastMessage('Welcome back!');
-            setTimeout(() => setToastMessage(''), 4000);
-          }}
-        />
-      )}
 
-      {showRegister && (
-        <RegisterOverlay
-          role="renter"
-          onClose={() => setShowRegister(false)}
-          onSuccess={() => {
-            setShowRegister(false);
-            setToastMessage('Account created successfully!');
-            setTimeout(() => setToastMessage(''), 4000);
-          }}
-        />
-      )}
-
+      {/* Toast */}
       {toastMessage && (
         <div className="fixed bottom-6 right-6 bg-saffron text-black px-4 py-2 rounded-md shadow-lg animate-fade-in z-50">
           {toastMessage}
@@ -87,3 +78,5 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
+
+

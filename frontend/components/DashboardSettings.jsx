@@ -20,6 +20,8 @@ const DashboardSettings = ({ role }) => {
     paymentDetails: '',
   });
 
+  const [showToast, setShowToast] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProfile((prev) => ({ ...prev, [name]: value }));
@@ -28,6 +30,12 @@ const DashboardSettings = ({ role }) => {
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     setProfile((prev) => ({ ...prev, profilePicture: file }));
+  };
+
+  const handleSave = () => {
+    console.log('Saved profile:', profile);
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 3000);
   };
 
   return (
@@ -135,9 +143,28 @@ const DashboardSettings = ({ role }) => {
           <p className="text-sm">📩 You have 2 new messages</p>
         </div>
       </section>
+
+      {/* Save Button */}
+      <div className="pt-4">
+        <button
+          onClick={handleSave}
+          className="w-full py-3 px-4 bg-gradient-to-r from-paprika to-saffron text-black text-lg font-semibold rounded-md shadow-md transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg hover:from-saffron hover:to-paprika hover:ring-2 hover:ring-saffron hover:ring-offset-2"
+        >
+          Save Settings
+        </button>
+      </div>
+
+      {/* Toast */}
+      {showToast && (
+        <div className="fixed bottom-6 right-6 bg-saffron text-black px-4 py-2 rounded-md shadow-lg animate-fade-in z-50">
+          Settings saved successfully!
+        </div>
+      )}
     </div>
   );
 };
 
 export default DashboardSettings;
+
+
 

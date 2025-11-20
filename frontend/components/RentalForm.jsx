@@ -2,28 +2,17 @@ import React, { useState } from "react";
 
 const categories = [
   { name: "Photo", image: "/assets/img/camera.jpg", price: "£45 / DAY" },
-  {
-    name: "Lighting",
-    image: "/assets/img/stage_lighting.jpg",
-    price: "£50 / DAY",
-  },
+  { name: "Lighting", image: "/assets/img/stage_lighting.jpg", price: "£50 / DAY" },
   { name: "Music", image: "/assets/img/dj_equipment.jpg", price: "£50 / DAY" },
   { name: "Film", image: "/assets/img/film_camera.jpg", price: "£40 / DAY" },
   { name: "Podcast", image: "/assets/img/microphone.jpg", price: "£30 / DAY" },
-  {
-    name: "Laboratory",
-    image: "/assets/img/microscope.jpg",
-    price: "£25 / DAY",
-  },
-  {
-    name: "Art & Craft",
-    image: "/assets/img/engraving_machine.jpg",
-    price: "£15 / DAY",
-  },
+  { name: "Laboratory", image: "/assets/img/microscope.jpg", price: "£25 / DAY" },
+  { name: "Art & Craft", image: "/assets/img/engraving_machine.jpg", price: "£15 / DAY" },
 ];
 
 const RentalForm = () => {
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <section
@@ -69,27 +58,22 @@ const RentalForm = () => {
             className="grid grid-cols-1 md:grid-cols-2 gap-4"
             aria-label="Rental details form"
           >
+            {/* Search Equipment */}
             <div>
-              <label htmlFor="brand" className="block text-sm font-medium mb-1">
-                Choose Brand
+              <label htmlFor="equipment" className="block text-sm font-medium mb-1">
+                Search Equipment
               </label>
-              <select
-                id="brand"
-                name="brand"
-                className="w-full border border-[#C24C30] rounded px-3 py-2"
-              >
-                {[
-                  "Canon",
-                  "Sony",
-                  "Nikon",
-                  "Fujifilm",
-                  "Panasonic",
-                  "Olympus",
-                ].map((brand, index) => (
-                  <option key={index}>{brand}</option>
-                ))}
-              </select>
+              <input
+                type="text"
+                id="equipment"
+                name="equipment"
+                placeholder="e.g. DJI Drone, Canon EOS R5"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full border border-[#C24C30] rounded px-3 py-2 bg-white text-carbon focus:outline-none focus:ring-2 focus:ring-saffron"
+              />
             </div>
+
             <div>
               <label
                 htmlFor="pickup-location"
@@ -105,6 +89,7 @@ const RentalForm = () => {
                 className="w-full border border-[#C24C30] rounded px-3 py-2"
               />
             </div>
+
             <div>
               <label
                 htmlFor="dropoff-location"
@@ -120,6 +105,7 @@ const RentalForm = () => {
                 className="w-full border border-[#C24C30] rounded px-3 py-2"
               />
             </div>
+
             <div>
               <label
                 htmlFor="pickup-datetime"
@@ -134,6 +120,7 @@ const RentalForm = () => {
                 className="w-full border border-[#C24C30] rounded px-3 py-2"
               />
             </div>
+
             <div>
               <label
                 htmlFor="return-datetime"
@@ -177,3 +164,5 @@ const RentalForm = () => {
 };
 
 export default RentalForm;
+
+

@@ -9,53 +9,57 @@ import {
   PaperClipIcon,
 } from '@heroicons/react/24/solid';
 
-const DisputeForm = ({ role= 'renter', onClose }) => {
-    const [formData, setFormData] = useState({
-        category: '',
-        subject: '',
-        description: '',
-        refernceId: '',
-        attachment: null,
-    });
+const DisputeForm = ({ role = 'renter', onClose }) => {
+  const [formData, setFormData] = useState({
+    category: '',
+    subject: '',
+    description: '',
+    referenceId: '',
+    attachment: null,
+  });
 
-    const [submitted, setSubmitted] = useState(false);
-    const [showToast, setShowToast] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
-    const categories = [
-        'Equipment Issue',
-        'Listing Problem',
-        'Payment Dispute',
-        'Documentation Request',
-        'Booking Conflict',
-        'Late Return',
-        'Incorrect Billing',
-        'Inappropriate Behavior',
-        'Other',
-    ];
+  const categories = [
+    'Equipment Issue',
+    'Listing Problem',
+    'Payment Dispute',
+    'Documentation Request',
+    'Booking Conflict',
+    'Late Return',
+    'Incorrect Billing',
+    'Inappropriate Behavior',
+    'Other',
+  ];
 
-    const handleChange = (e) => {
-        const { name, value, files } = e.target;
-        if (name === 'attachment') {
-            setFormData((prev) => ({ ...prev, [name]: files[0] })); 
-        } else {
-            setFormData((prev) => ({ ...prev, [name]: value }));
-        }
-    };
+  const handleChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === 'attachment') {
+      setFormData((prev) => ({ ...prev, [name]: files[0] }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+  };
 
-    const handleFileUpload = (e) => {
-        const file = e.target.files[0];
-        setFormData((prev) => ({ ...prev, attachment: file }));
-    };
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    setFormData((prev) => ({ ...prev, attachment: file }));
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Dispute Submitted:', formData);
-        setSubmitted(true);
-        setShowToast(true);
-        setTimeout(() => setShowToast(false), 4000);
-    };
-    return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-carbon bg-opacity-80 backdrop-blur-md">
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Dispute Submitted:', formData);
+    setSubmitted(true);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+      onClose(); // ✅ Close after toast fades
+    }, 3000);
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-carbon bg-opacity-80 backdrop-blur-md">
       <div className="relative w-full max-w-lg bg-nougat bg-opacity-95 backdrop-blur-lg rounded-xl shadow-2xl p-8 border border-rust">
 
         {/* Close Button */}
@@ -71,7 +75,7 @@ const DisputeForm = ({ role= 'renter', onClose }) => {
         </button>
 
         {/* Title */}
-        <h2 className="text-3xl font-bold text-white mb-6 text-center tracking-wide">
+        <h2 className="text-3xl font-bold text-black mb-6 text-center tracking-wide">
           Raise a Dispute
         </h2>
 
@@ -161,14 +165,18 @@ const DisputeForm = ({ role= 'renter', onClose }) => {
           </div>
         )}
       </div>
-        {showToast && (
-          <div className="fixed bottom-6 right-6 bg-saffron text-black px-4 py-2 rounded-md shadow-lg animate-fade-in">
-            Dispute submitted successfully!
-          </div>
-        )}
+
+      {/* Toast */}
+      {showToast && (
+        <div className="fixed bottom-6 right-6 bg-saffron text-black px-4 py-2 rounded-md shadow-lg animate-fade-in">
+          Dispute submitted successfully!
+        </div>
+      )}
     </div>
   );
 };
 
 export default DisputeForm;
+
+
 

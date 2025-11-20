@@ -10,9 +10,11 @@ import PrivacyPolicy from './PrivacyPolicy';
 import TermsOfService from './TermsOfService';
 
 const RegisterOverlay = ({ onClose }) => {
+  const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
@@ -31,17 +33,32 @@ const RegisterOverlay = ({ onClose }) => {
       return;
     }
 
+    if (!role) {
+      setError('Please select a role before registering.');
+      setLoading(false);
+      return;
+    }
+
+    if (!username) {
+      setError('Username is required.');
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await axios.post('http://localhost:5001/api/users/register', {
+        username,
         name,
         email,
         password,
+        role,
         updates,
       }, {
         withCredentials: true,
       });
 
       localStorage.setItem('authToken', response.data.token);
+      localStorage.setItem('role', role);
       console.log('Registration successful');
       window.location.href = '/dashboard';
     } catch (err) {
@@ -56,7 +73,7 @@ const RegisterOverlay = ({ onClose }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-carbon bg-opacity-80 backdrop-blur-md">
       <div className="relative w-full max-w-md bg-nougat bg-opacity-95 backdrop-blur-lg rounded-xl shadow-2xl p-8 border border-rust">
 
-        {/* Curved Close Button */}
+        {/* Close Button */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 bg-white text-carbon p-2 rounded-full shadow hover:bg-saffron transition"
@@ -73,6 +90,20 @@ const RegisterOverlay = ({ onClose }) => {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Username */}
+          <div className="relative">
+            <PencilSquareIcon className="absolute left-3 top-3 h-5 w-5 text-carbon" />
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Username"
+              required
+              className="w-full pl-10 pr-4 py-3 rounded-md border border-rust bg-white text-carbon text-base focus:outline-none focus:ring-2 focus:ring-saffron"
+            />
+          </div>
+
+          {/* Full Name */}
           <div className="relative">
             <PencilSquareIcon className="absolute left-3 top-3 h-5 w-5 text-carbon" />
             <input
@@ -84,6 +115,8 @@ const RegisterOverlay = ({ onClose }) => {
               className="w-full pl-10 pr-4 py-3 rounded-md border border-rust bg-white text-carbon text-base focus:outline-none focus:ring-2 focus:ring-saffron"
             />
           </div>
+
+          {/* Email */}
           <div className="relative">
             <EnvelopeIcon className="absolute left-3 top-3 h-5 w-5 text-carbon" />
             <input
@@ -95,6 +128,8 @@ const RegisterOverlay = ({ onClose }) => {
               className="w-full pl-10 pr-4 py-3 rounded-md border border-rust bg-white text-carbon text-base focus:outline-none focus:ring-2 focus:ring-saffron"
             />
           </div>
+
+          {/* Password */}
           <div className="relative">
             <LockClosedIcon className="absolute left-3 top-3 h-5 w-5 text-carbon" />
             <input
@@ -105,6 +140,21 @@ const RegisterOverlay = ({ onClose }) => {
               required
               className="w-full pl-10 pr-4 py-3 rounded-md border border-rust bg-white text-carbon text-base focus:outline-none focus:ring-2 focus:ring-saffron"
             />
+          </div>
+
+          {/* Role Dropdown */}
+          <div>
+            <label className="block text-sm font-medium text-carbon mb-1">Select Role</label>
+            <select
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              required
+              className="w-full border border-rust rounded px-3 py-2 bg-white text-carbon focus:outline-none focus:ring-2 focus:ring-saffron"
+            >
+              <option value="">-- Choose a role --</option>
+              <option value="owner">Owner</option>
+              <option value="renter">Renter</option>
+            </select>
           </div>
 
           {/* Error Message */}
@@ -151,7 +201,7 @@ const RegisterOverlay = ({ onClose }) => {
             </label>
           </div>
 
-          {/* Neon Hover-Up Register Button */}
+          {/* Register Button */}
           <button
             type="submit"
             disabled={loading}
@@ -178,6 +228,11 @@ const RegisterOverlay = ({ onClose }) => {
 };
 
 export default RegisterOverlay;
+
+
+
+
+
 
 
 
