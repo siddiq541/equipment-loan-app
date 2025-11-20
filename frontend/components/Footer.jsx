@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-const Footer = ({ onShowPrivacy, onShowTerms }) => (
+const Footer = ({ onShowPrivacy, onShowTerms, onShowContact }) => (
   <footer className="bg-[#E66A32] text-center py-6 text-sm text-black" role="contentinfo">
     <div className="container mx-auto max-w-screen-2xl px-4">
       <Image
@@ -28,12 +28,12 @@ const Footer = ({ onShowPrivacy, onShowTerms }) => (
         >
           Terms
         </button>
-        <a
-          href="/contact"
+        <button
+          onClick={onShowContact}
           className="hover:text-white focus:outline focus:ring-2 focus:ring-white underline"
         >
           Contact
-        </a>
+        </button>
       </nav>
     </div>
   </footer>
