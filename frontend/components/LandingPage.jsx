@@ -12,6 +12,7 @@ import Overlay from "./LoginOverlay";
 import RegisterOverlay from "./RegisterOverlay";
 import PrivacyPolicy from "./PrivacyPolicy";
 import TermsOfService from "./TermsOfService";
+import ContactForm from "./ContactForm";
 
 const LandingPage = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -20,6 +21,7 @@ const LandingPage = () => {
   const [showTerms, setShowTerms] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showContact, setShowContact] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -59,6 +61,7 @@ const LandingPage = () => {
       <Footer
         onShowPrivacy={() => setShowPrivacy(true)}
         onShowTerms={() => setShowTerms(true)}
+        onShowContact={() => setShowContact(true)}
       />
 
       {/* Overlays */}
@@ -66,6 +69,7 @@ const LandingPage = () => {
       {showRegister && <RegisterOverlay onClose={() => setShowRegister(false)} />}
       <PrivacyPolicy isOpen={showPrivacy} onClose={() => setShowPrivacy(false)} />
       <TermsOfService isOpen={showTerms} onClose={() => setShowTerms(false)} />
+      <ContactForm isOpen={showContact} onClose={() => setShowContact(false)} />
 
       {/* Toast */}
       {toastMessage && (
