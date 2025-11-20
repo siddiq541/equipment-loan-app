@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import OwnerDashboard from '../components/OwnerDashboard';
 import RenterDashboard from '../components/RenterDashboard';
 import DashboardSettings from '../components/DashboardSettings';
@@ -8,56 +9,111 @@ import DisputeHistory from '../components/DisputeHistory';
 
 const Dashboard = ({ role = 'owner' }) => {
   const [activeTab, setActiveTab] = useState('summary');
+  const [showDisputeForm, setShowDisputeForm] = useState(false);
+  const router = useRouter();
 
-return (
-  <div className="min-h-screen bg-nougat text-carbon p-6">
-    <h1 className="text-3xl font-bold mb-6 text-center">Equiply Pro Dashboard</h1>
+  const handleGoHome = () => {
+    router.push('/');
+  };
 
-    {/* Tab Menu */}
-    <div className="flex justify-center gap-4 mb-8">
-      <button
-        onClick={() => setActiveTab('summary')}
-        className={`px-4 py-2 rounded-md font-semibold ${
-          activeTab === 'summary' ? 'bg-saffron text-white' : 'bg-white text-carbon'
-        }`}
-      >
-        Summary
-      </button>
-      <button
-        onClick={() => setActiveTab('settings')}
-        className={`px-4 py-2 rounded-md font-semibold ${
-          activeTab === 'settings' ? 'bg-saffron text-white' : 'bg-white text-carbon'
-        }`}
-      >
-        Account Settings
-      </button>
-      <button
-        onClick={() => setActiveTab('dispute')}
-        className={`px-4 py-2 rounded-md font-semibold ${
-          activeTab === 'dispute' ? 'bg-saffron text-white' : 'bg-white text-carbon'
-        }`}
-      >
-        Raise Dispute
-      </button>
-      <button
-        onClick={() => setActiveTab('history')}
-        className={`px-4 py-2 rounded-md font-semibold ${
-          activeTab === 'history' ? 'bg-saffron text-white' : 'bg-white text-carbon'
-        }`}
-      >
-        Dispute History
-      </button>
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('role');
+    router.push('/');
+  };
+
+  return (
+    <div className="min-h-screen bg-[#d8b4a0] text-[#2B2B2B] font-sans">
+      {/* Top Bar */}
+      <div className="flex justify-between items-center px-6 py-4 bg-white shadow-md border-b border-rust">
+        <h1 className="text-2xl font-bold tracking-wide text-[#8C2F2B]">Equiply Pro Dashboard</h1>
+        <div className="space-x-4">
+          <button
+            onClick={handleGoHome}
+            className="text-[#C24C30] font-semibold hover:underline focus:outline focus:ring-2 focus:ring-[#C24C30]"
+          >
+            Home
+          </button>
+          <button
+            onClick={handleLogout}
+            className="text-[#C24C30] font-semibold hover:underline focus:outline focus:ring-2 focus:ring-[#C24C30]"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+
+      {/* Tab Menu */}
+      <div className="flex justify-center gap-4 py-6 bg-[#f5eae2] border-b border-rust">
+        <button
+          onClick={() => setActiveTab('summary')}
+          className={`px-4 py-2 rounded-md font-semibold transition ${
+            activeTab === 'summary'
+              ? 'bg-saffron text-black'
+              : 'bg-white text-black hover:bg-saffron hover:text-[#C24C30]'
+          }`}
+        >
+          Summary
+        </button>
+        <button
+          onClick={() => setActiveTab('settings')}
+          className={`px-4 py-2 rounded-md font-semibold transition ${
+            activeTab === 'settings'
+              ? 'bg-saffron text-black'
+              : 'bg-white text-black hover:bg-saffron hover:text-[#C24C30]'
+          }`}
+        >
+          Account Settings
+        </button>
+        <button
+          onClick={() => {
+            setActiveTab('dispute');
+            setShowDisputeForm(true);
+          }}
+          className={`px-4 py-2 rounded-md font-semibold transition ${
+            activeTab === 'dispute'
+              ? 'bg-saffron text-black'
+              : 'bg-white text-black hover:bg-saffron hover:text-[#C24C30]'
+          }`}
+        >
+          Raise Dispute
+        </button>
+        <button
+          onClick={() => setActiveTab('history')}
+          className={`px-4 py-2 rounded-md font-semibold transition ${
+            activeTab === 'history'
+              ? 'bg-saffron text-black'
+              : 'bg-white text-black hover:bg-saffron hover:text-[#C24C30]'
+          }`}
+        >
+          Dispute History
+        </button>
+      </div>
+
+      {/* Tab Content */}
+      <div className="p-6">
+        {activeTab === 'summary' ? (
+          role === 'owner' ? <OwnerDashboard /> : <RenterDashboard />
+        ) : activeTab === 'settings' ? (
+          <DashboardSettings role={role} />
+        ) : activeTab === 'history' ? (
+          <DisputeHistory role={role} />
+        ) : null}
+      </div>
+
+      {/* Dispute Form Modal */}
+      {showDisputeForm && (
+        <DisputeForm role={role} onClose={() => setShowDisputeForm(false)} />
+      )}
     </div>
-
-    {/* Tab Content */}
-    {activeTab === 'summary' ? (
-      role === 'owner' ? <OwnerDashboard /> : <RenterDashboard />
-    ) : (
-      <DashboardSettings role={role} />
-    )}
-  </div>
-);
+  );
 };
 
 export default Dashboard;
+
+
+
+
+
+
 
