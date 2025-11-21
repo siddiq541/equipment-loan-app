@@ -8,6 +8,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:3000",
   "https://equipment-loan-app.vercel.app/",
+  "https://equipment-loan-app.vercel.app",
 ];
 
 dotenv.config();
