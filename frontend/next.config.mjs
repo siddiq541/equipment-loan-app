@@ -1,7 +1,7 @@
-/** @type {import('next').NextConfig} */
+// next.config.js
 const nextConfig = {
-  /* config options here */
-  reactCompiler: true,
+  reactStrictMode: true,
+  experimental: { turbo: false },
 };
 
 export default nextConfig;
