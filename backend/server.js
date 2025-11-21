@@ -5,7 +5,10 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const app = express();
-const allowedOrigins = ["http://localhost:3000"];
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://equipment-loan-app.vercel.app/",
+];
 
 dotenv.config();
 
