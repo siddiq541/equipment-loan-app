@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Hero from "./Hero";
 import RentalForm from "./RentalForm";
-import Listings from "./Listings";
+import TopListings from "./TopListings";
 import Benefits from "./Benefits";
 import HowItWorks from "./HowItWorks";
 import Testimonials from "./Testimonials";
@@ -53,7 +53,7 @@ const LandingPage = () => {
 
       <Hero />
       <RentalForm />
-      <Listings />
+      <TopListings />
       <Benefits />
       <HowItWorks />
       <Testimonials />
@@ -82,5 +82,13 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
+
+
+
+
+
+
+
+
 
 
